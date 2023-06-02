@@ -38,19 +38,23 @@ public class ContactManager {
 
     public static String formatPhoneNumber(String number) {
         StringBuilder formattedNumber = new StringBuilder();
-
         int length = number.length();
-        int dashPosition = length % 3 == 0 ? 3 : length % 3;
 
         for (int i = 0; i < length; i++) {
-            if (i > 0 && i % 3 == dashPosition && i != length - 1) {
+            if (i > 0 && (i % 3 == 0) && (i != length - 1)) {
                 formattedNumber.append("-");
             }
             formattedNumber.append(number.charAt(i));
         }
 
-        return formattedNumber.toString(); // Return the formatted phone number
+        return formattedNumber.toString();
     }
+
+
+
+
+
+
 
     public static String formatName(String name) {
         int desiredLength = 15; // Adjust this value based on your desired spacing
@@ -82,16 +86,16 @@ public class ContactManager {
         if (contacts.isEmpty()) {
             System.out.println("No contacts found.");
         } else {
-            System.out.println("Name            | Phone number");
-            System.out.println("--------------------------------");
+            System.out.println("Name        | Phone number");
+            System.out.println("--------------------------");
             for (Contact contact : contacts) {
-                String formattedName = formatName(contact.getName()); // Format the name
-                String formattedPhoneNumber = formatPhoneNumber(contact.getPhoneNumber()); // Format the phone number
-                System.out.println(formattedName + " | " + formattedPhoneNumber); // Print the formatted contact information
+                System.out.println(contact.toString());
             }
+
         }
         System.out.println();
     }
+
 
     private void addContact() {
         Scanner scanner = new Scanner(System.in);
@@ -183,6 +187,9 @@ public class ContactManager {
             }
         }
     }
+
+
+
 
     public static void main(String[] args) {
         System.out.println("--------------------------------------------------------------------------");
